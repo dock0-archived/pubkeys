@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+find -L . -mindepth 1 -type d | xargs -n1 -I{} sh -c "cd {} && $0"
+
+find -L . -type f -not -name '*\.*' -not -name 'all' -exec cat {} \; \
+    | awk '{print length, $0}' \
+    | sort -n \
+    | cut -d " " -f2- \
+    | tee all
+
