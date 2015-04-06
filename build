@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-find -L . -mindepth 1 -type d | xargs -n1 -I{} sh -c "cd {} && $0"
+function build_index() {
+    find -L . -type f -not -name '*\.*' -exec cat {} \; \
+        | awk '{print length, $0}' \
+        | sort -n \
+        | cut -d " " -f2- \
+        | tee index.txt
+}
 
-find -L . -type f -not -name '*\.*' -not -name 'all' -exec cat {} \; \
-    | awk '{print length, $0}' \
-    | sort -n \
-    | cut -d " " -f2- \
-    | tee index.txt
+find -L . -mindepth 1 -type d | xargs -n1 -I{} sh -c "cd {} && build_index"
+
+ln -s default/index.txt index.txt
 
