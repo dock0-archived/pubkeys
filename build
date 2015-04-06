@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-MESSAGE=<<EOF
+export MESSAGE=<<EOF
 # Generated from https://github.com/akerl/keys/
 # Served by https://github.com/dock0/pubkeys
 # $(date)
