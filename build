@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 
-export MESSAGE=<<EOF
+export MESSAGE="
 # Generated from https://github.com/akerl/keys/
 # Served by https://github.com/dock0/pubkeys
 # $(date)
-EOF
+"
 
 function build_index() {
     echo "# $(basename $(pwd)) key set" > index.txt
-    echo "$MESSAGE\n" >> index.txt
+    echo "$MESSAGE" >> index.txt
     find -L . -type f -not -name '*\.*' -exec cat {} \; \
         | awk '{print length, $0}' \
         | sort -n \
