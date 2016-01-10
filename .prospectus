@@ -2,9 +2,8 @@ item do
   name 'pubkeys::submodule'
 
   expected do
-    url_xpath
-    url 'https://github.com/akerl/keys'
-    xpath '//a[@class="commit-tease-sha"]'
+    github_hash
+    repo 'akerl/keys'
   end
 
   actual do
