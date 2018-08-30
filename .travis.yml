@@ -1,0 +1,15 @@
+sudo: required
+dist: trusty
+services:
+- docker
+install:
+- docker build -t test .
+script:
+- docker run -ti test /bin/true
+- docker run -ti test /bin/bash --version
+- docker run -d -p 80:80 test && sleep 5
+- curl -Iv http://localhost:80
+notifications:
+  email: false
+  slack:
+    secure: XEcm2Ugk9pJodyfBwl8FxLEAxyelt32FGV2SQTFkG5oKlCLIsknX19awZ1seyUaWWLdFUuZCppNnF/ACv2AmROYqU3pkPnlvq51XK7/FL+TZuN+CSF4+GtxpBpsU59UibEuPCI3XtNHBtg9YevP3Oc68FhI2yQYWSbSdkiRJ2noPX34dbId2F0Y0JBvZFukeyqYNodtktFiERdXfKtOteU1LdkDmji/Mlbks0kvGYvB4KxpeyUt2ckGKLR3EhR7fEmc6iuwIgWyspAcOSEuqTBP4zGn17py1AWZa/PSWY6M4H3lZwxH2wRo++bmMLdJegEmVTCIlTzskwy4SuolamBQZ9ae0jF+GRmJpPx7uknv7ZNQYReRNrBFFvs2+Om/bUoCj9NVX5KvJoGErv+iK0CJd7WvulEBIaRVFNKkjAFPffR5KfoO4EHDS3T6zC2bcMh4OeK8m+3Bx27bprw8jaxj+XAFRRVA4q+HfOTadDvnbLk+wWk7UB63docL+IO3zmfB/BAB7+5rhH3iLnm4BsUj1xh5SH+7/PIb2Bq9/L4/Gqx6TICOKNfTErcR1DVCQDrPuKSDKJCCxpmJYeK6mdMKbkDMAtP8SijLZ9+XwsxIdRweTe+G4CVNtXLYTB8kpeOWBhuOYGK8iYYrsd8E0VZfY+pX69RhAjeGBtn5wNOA=
