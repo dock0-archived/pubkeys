@@ -4,12 +4,11 @@ services:
 - docker
 install:
 - docker build -t test .
+- docker run -d -p 80:80 test
 script:
 - docker run -ti test /bin/true
 - docker run -ti test /bin/bash --version
-- docker run -d -p 80:80 test && sleep 5
-- docker ps
-- curl -Iv http://localhost:80
+- curl -4Iv http://localhost:80
 notifications:
   email: false
   slack:
